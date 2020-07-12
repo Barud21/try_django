@@ -5,22 +5,6 @@ from django.shortcuts import render, get_object_or_404
 # no. 20 Model in a View
 from .models import BlogPost
 
-# GET -> 1 object
-# filter -> [] objects
-
-def blog_post_detail_page(request, slug):
-    print("DJANGO SAYS", request.method, request.path, request.user)
-    # queryset = BlogPost.objects.filter(slug=slug)
-    # if queryset.count() == 0:
-    #     raise Http404
-    # obj = queryset.first()
-    obj = get_object_or_404(BlogPost, slug=slug)
-    template_name = 'blog_post_detail.html'
-    context = {"object": obj}       # {"title": obj.title}
-    return render(request, template_name, context)
-
-
-
 # CRUD - web development concept
 
 # GET -> Retrieve / List
@@ -29,11 +13,14 @@ def blog_post_detail_page(request, slug):
 
 # CRUD = Create Retrieve Update Delete
 
+
+
 def blog_post_list_view(request):
     # list out objects
     # could be search
+    qs = BlogPost.objects.all() # queryset -> list of python objects
     template_name = 'blog_post_list.html'
-    context = {'object_list': []}
+    context = {'object_list': qs}
     return render(request, template_name, context)
 
 

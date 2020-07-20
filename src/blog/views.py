@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 # no. 20 Model in a View
-from .forms import BlogPostForm
+from .forms import BlogPostModelForm
 from .models import BlogPost
 
 # CRUD - web development concept
@@ -28,10 +28,12 @@ def blog_post_list_view(request):
 def blog_post_create_view(request):
     # create objects
     # ? use a form
-    form = BlogPostForm(request.POST or None)
+    form = BlogPostModelForm(request.POST or None)
     if form.is_valid():
-        obj = BlogPost.objects.create(**form.cleaned_data)
-        form = BlogPostForm()
+        obj = form.save(commit=False)
+        obj.save()
+
+        form = BlogPostModelForm()
     template_name = 'blog/create.html'
     context = {'form': form}
     return render(request, template_name, context)

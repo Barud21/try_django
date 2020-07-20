@@ -4,7 +4,7 @@ from django.db import models
 
 class BlogPost(models.Model):   # after creating new model, make sure it is in the apps (settings.py) and type in terminal "python manage.py makemigrations" and "python manage.py migrate"
     # id = models.IntegerField()    # primary key (pk)
-    title = models.TextField()
+    title = models.CharField(max_length=120)
     slug = models.SlugField(unique=True)       # hello world -> hello-world
     content = models.TextField(null=True, blank=True)
 

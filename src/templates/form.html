@@ -9,9 +9,9 @@
 {% endif %}
 
 
-<form method="POST" action='.'> {% csrf_token %}
+<form method='POST' action=''> {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Send</button>
+    <button type='submit'>Send</button>
 </form>
 
 {% endblock %}

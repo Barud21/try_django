@@ -39,6 +39,7 @@ INSTALLED_APPS = [ # components
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog', # pluggable
+    'searches'
 ]
 
 MIDDLEWARE = [
